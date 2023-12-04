@@ -1,0 +1,11 @@
+[package]
+name = "aoc-bench"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+aoc-traits = { path = "../aoc-traits" }
+criterion = "0.5"
+dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2023" }

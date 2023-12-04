@@ -1,3 +1,3 @@
 [workspace]
-members = ["aoc-traits"]
+members = ["aoc-traits", "aoc-bench"]
 resolver = "2"
