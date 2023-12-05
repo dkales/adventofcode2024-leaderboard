@@ -7,7 +7,10 @@ use clap::Parser;
 use color_eyre::eyre::{Context, Result};
 use tabled::{
     builder::Builder,
-    settings::{object::Rows, Alignment, Modify, Style},
+    settings::{
+        object::{Columns, Rows},
+        Alignment, Color, Modify, Style,
+    },
 };
 
 #[derive(Parser)]
@@ -90,6 +93,22 @@ fn main() -> Result<()> {
             .median_for_user
             .insert(username.to_string(), median);
     }
+    // for each day, add a total phase
+    for day_benchmarks in benchmarks.days.values_mut() {
+        let mut total_phase = AoCBenchmarkPhase::default();
+        for phase_benchmarks in day_benchmarks.phases.values() {
+            for (user, median) in &phase_benchmarks.median_for_user {
+                *total_phase
+                    .median_for_user
+                    .entry(user.to_owned())
+                    .or_default() += median;
+            }
+        }
+        day_benchmarks
+            .phases
+            .insert("Total".to_string(), total_phase);
+    }
+
     // Day, Phase, User, User, User, ...
     let users: Vec<String> = users.into_iter().collect();
 
@@ -106,33 +125,24 @@ fn main() -> Result<()> {
     for (day, day_benchmarks) in benchmarks.days {
         for (phase, phase_benchmarks) in &day_benchmarks.phases {
             let mut row = vec![day.to_string(), phase.to_owned()];
+            let min_median = phase_benchmarks
+                .median_for_user
+                .values()
+                .copied()
+                .min_by(|a, b| a.partial_cmp(b).unwrap())
+                .unwrap_or_default();
             for user in &users {
                 let median = phase_benchmarks.median_for_user.get(user).copied();
                 if let Some(median) = median {
+                    let maybe_bold = if median == min_median { "**" } else { "" };
                     let (median, unit) = helper::scale_nanoseconds_value(median);
-                    row.push(format!("{:.3}{}", median, unit));
+                    row.push(format!("{}{:.3}{}{}", maybe_bold, median, unit, maybe_bold));
                 } else {
                     row.push("-".to_string());
                 }
             }
             table_builder.push_record(row);
         }
-        // add the total for the day
-        let mut row = vec![day.to_string(), "Total".to_string()];
-        for user in &users {
-            let median = day_benchmarks
-                .phases
-                .values()
-                .map(|phase| phase.median_for_user.get(user).copied())
-                .sum();
-            if let Some(median) = median {
-                let (median, unit) = helper::scale_nanoseconds_value(median);
-                row.push(format!("{:.3}{}", median, unit));
-            } else {
-                row.push("-".to_string());
-            }
-        }
-        table_builder.push_record(row);
     }
     println!(
         "{}",
