@@ -25,6 +25,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
+      - name: Update Deps to pull new versions of solutions
+        run: cargo update --workspace
       - name: Build AoC Benchmarks
         run: cargo build --release --workspace --all-features
       - name: Run AoC Benchmarks
