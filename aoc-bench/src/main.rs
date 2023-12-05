@@ -15,10 +15,7 @@ fn bench_aoc_day<'a, S: AdventOfCodeDay<'a>>(
     expected_stage2: &str,
 ) -> std::thread::Result<()> {
     let input = input.trim();
-    // set a panic hook that does nothing
-    panic::set_hook(Box::new(|_info| {
-        // do nothing
-    }));
+    println!("Benchmarking user {}, day{:02}", username, day);
     let parsed_input = panic::catch_unwind(|| {
         let parsed_input = S::parse_input(black_box(input));
         let stage1_solution = S::solve_part1(&parsed_input);
@@ -27,9 +24,6 @@ fn bench_aoc_day<'a, S: AdventOfCodeDay<'a>>(
         assert_eq!(stage2_solution.to_string(), expected_stage2);
         parsed_input
     })?;
-    // restore normal panic behavior
-    let _ = panic::take_hook();
-    println!("Benchmarking user {}, day{:02}", username, day);
     c.bench_function(&format!("{username}-day{day:02}-parse"), |b| {
         b.iter(|| {
             black_box(S::parse_input(black_box(input)));
@@ -142,7 +136,7 @@ const INPUTS_OUTPUTS: [(u8, &'static str, &'static str, &'static str); 25] = [
         5,
         include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day05.txt")),
         "174137457",
-        "55701",
+        "1493866",
     ),
     (
         6,
