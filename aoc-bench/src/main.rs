@@ -1,29 +1,43 @@
 use std::{
     panic::{self},
+    sync::mpsc,
+    thread,
     time::Duration,
 };
 
 use aoc_traits::{AdventOfCodeDay, AdventOfCodeSolutions};
 use criterion::{black_box, Criterion};
 
-fn bench_aoc_day<'a, S: AdventOfCodeDay<'a>>(
+fn bench_aoc_day<S: AdventOfCodeDay<'static>>(
     c: &mut Criterion,
     username: &str,
     day: u8,
-    input: &'a str,
-    expected_stage1: &str,
-    expected_stage2: &str,
+    input: &'static str,
+    expected_stage1: &'static str,
+    expected_stage2: &'static str,
 ) -> std::thread::Result<()> {
-    let input = input.trim();
     println!("Benchmarking user {}, day{:02}", username, day);
-    let parsed_input = panic::catch_unwind(|| {
-        let parsed_input = S::parse_input(black_box(input));
-        let stage1_solution = S::solve_part1(&parsed_input);
-        assert_eq!(stage1_solution.to_string(), expected_stage1);
-        let stage2_solution = S::solve_part2(&parsed_input);
-        assert_eq!(stage2_solution.to_string(), expected_stage2);
-        parsed_input
-    })?;
+    // give the user's code 60 seconds to run
+    let (sender, receiver) = mpsc::channel();
+    let t = thread::spawn(move || {
+        let res = panic::catch_unwind(|| {
+            let input = input.trim();
+            let parsed_input = S::parse_input(black_box(input));
+            let stage1_solution = S::solve_part1(&parsed_input);
+            assert_eq!(stage1_solution.to_string(), expected_stage1);
+            let stage2_solution = S::solve_part2(&parsed_input);
+            assert_eq!(stage2_solution.to_string(), expected_stage2);
+        });
+        sender.send(res).unwrap();
+    });
+    let _ = match receiver.recv_timeout(Duration::from_secs(60)) {
+        Ok(x) => x?,
+        Err(_) => return Err(Box::new("timeout")),
+    };
+    let _ = t.join();
+
+    let input = input.trim();
+    let parsed_input = S::parse_input(black_box(input));
     c.bench_function(&format!("{username}-day{day:02}-parse"), |b| {
         b.iter(|| {
             black_box(S::parse_input(black_box(input)));
