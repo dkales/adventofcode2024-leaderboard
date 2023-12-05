@@ -5,7 +5,10 @@ use std::{
 
 use clap::Parser;
 use color_eyre::eyre::{Context, Result};
-use prettytable::{Cell, Row};
+use tabled::{
+    builder::Builder,
+    settings::{object::Rows, Alignment, Modify, Style},
+};
 
 #[derive(Parser)]
 struct Args {
@@ -90,32 +93,32 @@ fn main() -> Result<()> {
     // Day, Phase, User, User, User, ...
     let users: Vec<String> = users.into_iter().collect();
 
-    let mut table = prettytable::Table::new();
+    let mut table_builder = Builder::default();
     // header
-    table.set_titles(Row::new(
+    table_builder.set_header(
         [
-            vec![Cell::new("Day"), Cell::new("Phase")],
-            users.iter().map(|s| Cell::new(s)).collect(),
+            vec!["Day", "Phase"],
+            users.iter().map(|s| s.as_str()).collect(),
         ]
         .concat(),
-    ));
+    );
 
     for (day, day_benchmarks) in benchmarks.days {
         for (phase, phase_benchmarks) in &day_benchmarks.phases {
-            let mut row = vec![Cell::new(&day.to_string()), Cell::new(&phase)];
+            let mut row = vec![day.to_string(), phase.to_owned()];
             for user in &users {
                 let median = phase_benchmarks.median_for_user.get(user).copied();
                 if let Some(median) = median {
                     let (median, unit) = helper::scale_nanoseconds_value(median);
-                    row.push(Cell::new(&format!("{:.3}{}", median, unit)));
+                    row.push(format!("{:.3}{}", median, unit));
                 } else {
-                    row.push(Cell::new("-"));
+                    row.push("-".to_string());
                 }
             }
-            table.add_row(Row::new(row));
+            table_builder.push_record(row);
         }
         // add the total for the day
-        let mut row = vec![Cell::new(&day.to_string()), Cell::new("Total")];
+        let mut row = vec![day.to_string(), "Total".to_string()];
         for user in &users {
             let median = day_benchmarks
                 .phases
@@ -124,14 +127,21 @@ fn main() -> Result<()> {
                 .sum();
             if let Some(median) = median {
                 let (median, unit) = helper::scale_nanoseconds_value(median);
-                row.push(Cell::new(&format!("{:.3}{}", median, unit)));
+                row.push(format!("{:.3}{}", median, unit));
             } else {
-                row.push(Cell::new("-"));
+                row.push("-".to_string());
             }
         }
-        table.add_row(Row::new(row));
+        table_builder.push_record(row);
     }
-    table.printstd();
+    println!(
+        "{}",
+        table_builder
+            .build()
+            .with(Style::markdown())
+            .with(Modify::new(Rows::new(1..)).with(Alignment::right()))
+            .to_string(),
+    );
 
     Ok(())
 }
