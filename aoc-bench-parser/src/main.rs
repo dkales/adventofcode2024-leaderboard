@@ -30,7 +30,6 @@ struct AoCBenchmarkPhase {
 
 fn main() -> Result<()> {
     let args = Args::parse();
-    println!("criterion_dir: {:?}", args.criterion_dir);
     if !args.criterion_dir.is_dir() {
         return Err(color_eyre::eyre::eyre!("criterion_dir is not a directory"));
     }

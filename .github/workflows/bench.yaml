@@ -32,4 +32,4 @@ jobs:
       - name: Run AoC Benchmarks
         run: cargo run --release -p aoc-bench
       - name: Parse AoC Benchmarks
-        run: cargo run --release -p aoc-bench-parser -- -c target/criterion
+        run: cargo run --release -p aoc-bench-parser -- -c target/criterion >> $GITHUB_STEP_SUMMARY
