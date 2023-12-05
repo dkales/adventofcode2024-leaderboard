@@ -84,7 +84,7 @@ dependencies = [
 name = "aoc-bench"
 version = "0.1.0"
 dependencies = [
- "aoc-traits 0.1.0",
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
  "criterion",
  "meta",
 ]
@@ -96,7 +96,7 @@ version = "0.1.0"
 [[package]]
 name = "aoc-traits"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2023-leaderboard?rev=16aac98471cab02bb856980dbc469de4b0a7f657#16aac98471cab02bb856980dbc469de4b0a7f657"
+source = "git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc#ac544663758c2dca2ee892fd7ab59419999350dc"
 
 [[package]]
 name = "autocfg"
@@ -324,18 +324,18 @@ dependencies = [
 [[package]]
 name = "day01"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2023#6d02a56d9a2bcb61df538968a2a7e234a4ce18a3"
+source = "git+https://github.com/dkales/adventofcode2023?branch=main#36d1518c8c9a654ed8241f2b03db264ae17ebddd"
 dependencies = [
- "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=16aac98471cab02bb856980dbc469de4b0a7f657)",
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
  "nom",
 ]
 
 [[package]]
 name = "day02"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2023#6d02a56d9a2bcb61df538968a2a7e234a4ce18a3"
+source = "git+https://github.com/dkales/adventofcode2023?branch=main#36d1518c8c9a654ed8241f2b03db264ae17ebddd"
 dependencies = [
- "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=16aac98471cab02bb856980dbc469de4b0a7f657)",
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
  "color-eyre",
  "nom",
 ]
@@ -343,18 +343,28 @@ dependencies = [
 [[package]]
 name = "day03"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2023#6d02a56d9a2bcb61df538968a2a7e234a4ce18a3"
+source = "git+https://github.com/dkales/adventofcode2023?branch=main#36d1518c8c9a654ed8241f2b03db264ae17ebddd"
 dependencies = [
- "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=16aac98471cab02bb856980dbc469de4b0a7f657)",
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
  "color-eyre",
 ]
 
 [[package]]
 name = "day04"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2023#6d02a56d9a2bcb61df538968a2a7e234a4ce18a3"
+source = "git+https://github.com/dkales/adventofcode2023?branch=main#36d1518c8c9a654ed8241f2b03db264ae17ebddd"
 dependencies = [
- "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=16aac98471cab02bb856980dbc469de4b0a7f657)",
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
+ "color-eyre",
+ "nom",
+]
+
+[[package]]
+name = "day05"
+version = "0.1.0"
+source = "git+https://github.com/dkales/adventofcode2023?branch=main#36d1518c8c9a654ed8241f2b03db264ae17ebddd"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
  "color-eyre",
  "nom",
 ]
@@ -492,15 +502,16 @@ dependencies = [
 [[package]]
 name = "meta"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2023#6d02a56d9a2bcb61df538968a2a7e234a4ce18a3"
+source = "git+https://github.com/dkales/adventofcode2023?branch=main#36d1518c8c9a654ed8241f2b03db264ae17ebddd"
 dependencies = [
- "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=16aac98471cab02bb856980dbc469de4b0a7f657)",
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
  "clap",
  "color-eyre",
  "day01",
  "day02",
  "day03",
  "day04",
+ "day05",
 ]
 
 [[package]]
