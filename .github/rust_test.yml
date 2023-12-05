@@ -1,0 +1,30 @@
+name: AoC Benchmarks
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - v*
+  schedule:
+    - cron: "0 * * * *"
+
+env:
+  # incremental builds are slower and don't make much sense in ci
+  CARGO_INCREMENTAL: 0
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: FULL
+  RUSTFLAGS: "-C linker=clang -C link-arg=-fuse-ld=lld"
+
+jobs:
+  test:
+    name: Bench
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+      - name: Build AoC Benchmarks
+        run: cargo build --release --workspace --all-features
+      - name: Run AoC Benchmarks
+        run: cargo run --release -p aoc-bench
