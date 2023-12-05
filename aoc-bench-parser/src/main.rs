@@ -7,10 +7,7 @@ use clap::Parser;
 use color_eyre::eyre::{Context, Result};
 use tabled::{
     builder::Builder,
-    settings::{
-        object::{Columns, Rows},
-        Alignment, Color, Modify, Style,
-    },
+    settings::{object::Rows, Alignment, Modify, Style},
 };
 
 #[derive(Parser)]
