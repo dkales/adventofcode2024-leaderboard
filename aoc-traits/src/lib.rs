@@ -56,34 +56,34 @@ pub fn run_day<'a, Day: AdventOfCodeDay<'a>>(input: &'a str) {
     println!("Stage 2: {}", stage2_solution.to_string());
 }
 
-pub trait AdventOfCodeSolutions<'a> {
-    type Day01: AdventOfCodeDay<'a>;
-    type Day02: AdventOfCodeDay<'a>;
-    type Day03: AdventOfCodeDay<'a>;
-    type Day04: AdventOfCodeDay<'a>;
-    type Day05: AdventOfCodeDay<'a>;
-    type Day06: AdventOfCodeDay<'a>;
-    type Day07: AdventOfCodeDay<'a>;
-    type Day08: AdventOfCodeDay<'a>;
-    type Day09: AdventOfCodeDay<'a>;
-    type Day10: AdventOfCodeDay<'a>;
-    type Day11: AdventOfCodeDay<'a>;
-    type Day12: AdventOfCodeDay<'a>;
-    type Day13: AdventOfCodeDay<'a>;
-    type Day14: AdventOfCodeDay<'a>;
-    type Day15: AdventOfCodeDay<'a>;
-    type Day16: AdventOfCodeDay<'a>;
-    type Day17: AdventOfCodeDay<'a>;
-    type Day18: AdventOfCodeDay<'a>;
-    type Day19: AdventOfCodeDay<'a>;
-    type Day20: AdventOfCodeDay<'a>;
-    type Day21: AdventOfCodeDay<'a>;
-    type Day22: AdventOfCodeDay<'a>;
-    type Day23: AdventOfCodeDay<'a>;
-    type Day24: AdventOfCodeDay<'a>;
-    type Day25: AdventOfCodeDay<'a>;
+pub trait AdventOfCodeSolutions {
+    type Day01: for<'a> AdventOfCodeDay<'a>;
+    type Day02: for<'a> AdventOfCodeDay<'a>;
+    type Day03: for<'a> AdventOfCodeDay<'a>;
+    type Day04: for<'a> AdventOfCodeDay<'a>;
+    type Day05: for<'a> AdventOfCodeDay<'a>;
+    type Day06: for<'a> AdventOfCodeDay<'a>;
+    type Day07: for<'a> AdventOfCodeDay<'a>;
+    type Day08: for<'a> AdventOfCodeDay<'a>;
+    type Day09: for<'a> AdventOfCodeDay<'a>;
+    type Day10: for<'a> AdventOfCodeDay<'a>;
+    type Day11: for<'a> AdventOfCodeDay<'a>;
+    type Day12: for<'a> AdventOfCodeDay<'a>;
+    type Day13: for<'a> AdventOfCodeDay<'a>;
+    type Day14: for<'a> AdventOfCodeDay<'a>;
+    type Day15: for<'a> AdventOfCodeDay<'a>;
+    type Day16: for<'a> AdventOfCodeDay<'a>;
+    type Day17: for<'a> AdventOfCodeDay<'a>;
+    type Day18: for<'a> AdventOfCodeDay<'a>;
+    type Day19: for<'a> AdventOfCodeDay<'a>;
+    type Day20: for<'a> AdventOfCodeDay<'a>;
+    type Day21: for<'a> AdventOfCodeDay<'a>;
+    type Day22: for<'a> AdventOfCodeDay<'a>;
+    type Day23: for<'a> AdventOfCodeDay<'a>;
+    type Day24: for<'a> AdventOfCodeDay<'a>;
+    type Day25: for<'a> AdventOfCodeDay<'a>;
 
-    fn solve_day(day: usize, input: &'a str) -> Result<(), String> {
+    fn solve_day(day: usize, input: &str) -> Result<(), String> {
         let input = input.trim();
         match day {
             1 => run_day::<Self::Day01>(input),
