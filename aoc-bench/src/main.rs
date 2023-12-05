@@ -99,7 +99,8 @@ fn benches() {
         .warm_up_time(Duration::from_secs(1))
         .measurement_time(Duration::from_secs(1))
         .without_plots();
-    bench_aoc::<dkales_aoc::AoC2023>(&mut c, "dkales")
+    bench_aoc::<dkales_aoc::AoC2023>(&mut c, "dkales");
+    bench_aoc::<fnieddu_aoc::AoC2023>(&mut c, "fnieddu");
 }
 
 fn main() {

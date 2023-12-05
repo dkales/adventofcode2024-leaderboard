@@ -9,3 +9,4 @@ edition = "2021"
 aoc-traits = { git = "https://github.com/dkales/adventofcode2023-leaderboard", rev = "ac544663758c2dca2ee892fd7ab59419999350dc" }
 criterion = "0.5"
 dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2023", branch = "main" }
+fnieddu-aoc = { package = "meta", git = "https://github.com/fnieddu/AoC2023", branch = "main" }

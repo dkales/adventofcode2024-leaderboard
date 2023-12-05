@@ -86,7 +86,8 @@ version = "0.1.0"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
  "criterion",
- "meta",
+ "meta 0.1.0 (git+https://github.com/dkales/adventofcode2023?branch=main)",
+ "meta 0.1.0 (git+https://github.com/fnieddu/AoC2023?branch=main)",
 ]
 
 [[package]]
@@ -370,6 +371,38 @@ dependencies = [
 ]
 
 [[package]]
+name = "day1"
+version = "0.1.0"
+source = "git+https://github.com/fnieddu/AoC2023?branch=main#a6f2b0642c5332dc6ac4482db0725bc7c15bf7b6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
+]
+
+[[package]]
+name = "day2"
+version = "0.1.0"
+source = "git+https://github.com/fnieddu/AoC2023?branch=main#a6f2b0642c5332dc6ac4482db0725bc7c15bf7b6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
+]
+
+[[package]]
+name = "day3"
+version = "0.1.0"
+source = "git+https://github.com/fnieddu/AoC2023?branch=main#a6f2b0642c5332dc6ac4482db0725bc7c15bf7b6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
+]
+
+[[package]]
+name = "day4"
+version = "0.1.0"
+source = "git+https://github.com/fnieddu/AoC2023?branch=main#a6f2b0642c5332dc6ac4482db0725bc7c15bf7b6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
+]
+
+[[package]]
 name = "either"
 version = "1.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -512,6 +545,20 @@ dependencies = [
  "day03",
  "day04",
  "day05",
+]
+
+[[package]]
+name = "meta"
+version = "0.1.0"
+source = "git+https://github.com/fnieddu/AoC2023?branch=main#a6f2b0642c5332dc6ac4482db0725bc7c15bf7b6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2023-leaderboard?rev=ac544663758c2dca2ee892fd7ab59419999350dc)",
+ "clap",
+ "color-eyre",
+ "day1",
+ "day2",
+ "day3",
+ "day4",
 ]
 
 [[package]]
