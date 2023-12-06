@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: stable
+          toolchain: nightly
       - name: Update Deps to pull new versions of solutions
         run: cargo update --workspace
       - name: Build AoC Benchmarks

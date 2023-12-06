@@ -11,3 +11,4 @@ criterion = "0.5"
 dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2023", branch = "main" }
 fnieddu-aoc = { package = "meta", git = "https://github.com/fnieddu/AoC2023", branch = "main" }
 fabian-aoc = { package = "meta", git = "https://github.com/Fabian1409/adventofcode", branch = "master" }
+simon-aoc = { package = "meta", git = "https://code.guggi.xyz/simon/advent_of_code_23", branch = "main" }

@@ -116,6 +116,7 @@ fn benches() {
     bench_aoc::<dkales_aoc::AoC2023>(&mut c, "dkales");
     bench_aoc::<fnieddu_aoc::AoC2023>(&mut c, "fnieddu");
     bench_aoc::<fabian_aoc::AoC2023>(&mut c, "fabian1409");
+    bench_aoc::<simon_aoc::AoC2023>(&mut c, "devise");
 }
 
 fn main() {
