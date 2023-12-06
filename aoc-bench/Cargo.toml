@@ -10,3 +10,4 @@ aoc-traits = { git = "https://github.com/dkales/adventofcode2023-leaderboard", r
 criterion = "0.5"
 dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2023", branch = "main" }
 fnieddu-aoc = { package = "meta", git = "https://github.com/fnieddu/AoC2023", branch = "main" }
+fabian-aoc = { package = "meta", git = "https://github.com/Fabian1409/adventofcode", branch = "master" }
