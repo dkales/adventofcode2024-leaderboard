@@ -131,7 +131,7 @@ fn main() -> Result<()> {
             for user in &users {
                 let median = phase_benchmarks.median_for_user.get(user).copied();
                 if let Some(median) = median {
-                    let maybe_bold = if median == min_median { "**" } else { "" };
+                    let maybe_bold = if median < min_median * 1.05 { "**" } else { "" };
                     let (median, unit) = helper::scale_nanoseconds_value(median);
                     row.push(format!("{}{:.3}{}{}", maybe_bold, median, unit, maybe_bold));
                 } else {
