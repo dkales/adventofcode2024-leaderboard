@@ -8,6 +8,13 @@ use std::{
 use aoc_traits::{AdventOfCodeDay, AdventOfCodeSolutions};
 use criterion::{black_box, Criterion};
 
+enum ExecutionError {
+    Timeout,
+    WrongAnswer,
+    NotImplemented,
+    Panic,
+}
+
 fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
     c: &mut Criterion,
     username: &str,
@@ -15,43 +22,83 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
     input: &'static str,
     expected_stage1: &'static str,
     expected_stage2: &'static str,
-) -> std::thread::Result<()> {
+) -> Result<(), ExecutionError> {
     println!("Benchmarking user {}, day{:02}", username, day);
     if core::any::TypeId::of::<S>() == core::any::TypeId::of::<()>() {
-        println!("{username}-day{day:02}: not implemented");
-        return Ok(());
+        return Err(ExecutionError::NotImplemented);
     }
     // give the user's code 60 seconds to run
+
+    // check if the parser is implemented and takes less than 1 second
     let (sender, receiver) = mpsc::channel();
     let t = thread::spawn(move || {
         let res = panic::catch_unwind(|| {
             let input = input.trim();
-            let parsed_input = S::parse_input(black_box(input));
-            let stage1_solution = S::solve_part1(&parsed_input);
-            assert_eq!(stage1_solution.to_string(), expected_stage1);
-            let stage2_solution = S::solve_part2(&parsed_input);
-            assert_eq!(stage2_solution.to_string(), expected_stage2);
+            let _parsed_input = S::parse_input(input);
+            ()
         });
-        sender.send(res).unwrap();
+        sender.send(res).expect("channel is alive");
     });
-    let _ = match receiver.recv_timeout(Duration::from_secs(60)) {
-        Ok(x) => x?,
-        Err(_) => return Err(Box::new("timeout")),
+    let _ = match receiver.recv_timeout(Duration::from_secs(1)) {
+        Ok(x) => x.expect("channel is alive"),
+        Err(_) => return Err(ExecutionError::Timeout),
     };
     let _ = t.join();
 
-    let input = input.trim();
-    let parsed_input = S::parse_input(black_box(input));
+    let trimmed_input = input.trim();
     c.bench_function(&format!("{username}-day{day:02}-parse"), |b| {
         b.iter(|| {
-            black_box(S::parse_input(black_box(input)));
+            black_box(S::parse_input(black_box(trimmed_input)));
         })
     });
+
+    // check if part1 is implemented and takes less than 10 second
+    let (sender, receiver) = mpsc::channel();
+    let t = thread::spawn(move || {
+        let res = panic::catch_unwind(|| {
+            let input = input.trim();
+            let parsed_input = S::parse_input(input);
+            let stage1 = S::solve_part1(black_box(&parsed_input));
+            if stage1.to_string() != expected_stage1 {
+                return Err(ExecutionError::WrongAnswer);
+            }
+            Ok(())
+        });
+        sender.send(res).expect("channel is alive");
+    });
+    let _ = match receiver.recv_timeout(Duration::from_secs(10)) {
+        Ok(Ok(x)) => x?,
+        Ok(Err(_)) => return Err(ExecutionError::Panic),
+        Err(_) => return Err(ExecutionError::Timeout),
+    };
+    let _ = t.join();
+
+    let parsed_input = S::parse_input(trimmed_input);
     c.bench_function(&format!("{username}-day{day:02}-part1"), |b| {
         b.iter(|| {
             black_box(S::solve_part1(black_box(&parsed_input)));
         })
     });
+    // check if part2 is implemented and takes less than 50 second
+    let (sender, receiver) = mpsc::channel();
+    let t = thread::spawn(move || {
+        let res = panic::catch_unwind(|| {
+            let input = input.trim();
+            let parsed_input = S::parse_input(input);
+            let stage2 = S::solve_part2(black_box(&parsed_input));
+            if stage2.to_string() != expected_stage2 {
+                return Err(ExecutionError::WrongAnswer);
+            }
+            Ok(())
+        });
+        sender.send(res).expect("channel is alive");
+    });
+    let _ = match receiver.recv_timeout(Duration::from_secs(50)) {
+        Ok(Ok(x)) => x?,
+        Ok(Err(_)) => return Err(ExecutionError::Panic),
+        Err(_) => return Err(ExecutionError::Timeout),
+    };
+    let _ = t.join();
     c.bench_function(&format!("{username}-day{day:02}-part2"), |b| {
         b.iter(|| {
             black_box(S::solve_part2(black_box(&parsed_input)));
@@ -91,21 +138,13 @@ fn bench_aoc<S: AdventOfCodeSolutions + 'static>(c: &mut Criterion, username: &s
             _ => unreachable!(),
         };
         if let Err(e) = result {
-            if let Some(error_msg) = e.downcast_ref::<&str>() {
-                println!(
-                    "Error running benchmark for user {}, day {:02}: {}",
-                    username, day, error_msg,
-                );
-            } else if let Ok(error_msg) = e.downcast::<Box<dyn std::error::Error>>() {
-                println!(
-                    "Error running benchmark for user {}, day {:02}: {}",
-                    username, day, error_msg,
-                );
-            } else {
-                println!(
-                    "Error running benchmark for user {}, day {:02}: {}",
-                    username, day, "unkown error",
-                );
+            print!("{username}-day{day:02}: ");
+
+            match e {
+                ExecutionError::Timeout => println!("timeout"),
+                ExecutionError::WrongAnswer => println!("wrong answer"),
+                ExecutionError::NotImplemented => println!("not implemented"),
+                ExecutionError::Panic => println!("panicked"),
             }
         }
     }
