@@ -8,7 +8,7 @@ use std::{
 use aoc_traits::{AdventOfCodeDay, AdventOfCodeSolutions};
 use criterion::{black_box, Criterion};
 
-fn bench_aoc_day<S: AdventOfCodeDay<'static>>(
+fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
     c: &mut Criterion,
     username: &str,
     day: u8,
@@ -17,6 +17,10 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static>>(
     expected_stage2: &'static str,
 ) -> std::thread::Result<()> {
     println!("Benchmarking user {}, day{:02}", username, day);
+    if core::any::TypeId::of::<S>() == core::any::TypeId::of::<()>() {
+        println!("{username}-day{day:02}: not implemented");
+        return Ok(());
+    }
     // give the user's code 60 seconds to run
     let (sender, receiver) = mpsc::channel();
     let t = thread::spawn(move || {
@@ -56,7 +60,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static>>(
     Ok(())
 }
 
-fn bench_aoc<S: AdventOfCodeSolutions>(c: &mut Criterion, username: &str) {
+fn bench_aoc<S: AdventOfCodeSolutions + 'static>(c: &mut Criterion, username: &str) {
     for (day, input, out1, out2) in INPUTS_OUTPUTS {
         let result = match day {
             1 => bench_aoc_day::<S::Day01>(c, username, day, input, out1, out2),
@@ -109,7 +113,7 @@ fn bench_aoc<S: AdventOfCodeSolutions>(c: &mut Criterion, username: &str) {
 
 fn benches() {
     let mut c = Criterion::default()
-        .sample_size(10)
+        .sample_size(100)
         .warm_up_time(Duration::from_secs(1))
         .measurement_time(Duration::from_secs(1))
         .without_plots();
