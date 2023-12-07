@@ -12,8 +12,12 @@ use tabled::{
 
 #[derive(Parser)]
 struct Args {
+    /// the directory containing the criterion output
     #[clap(short, long)]
     criterion_dir: PathBuf,
+    /// the log file from the benchmark run
+    #[clap(short, long)]
+    logfile: PathBuf,
 }
 
 #[derive(Default)]
@@ -36,6 +40,7 @@ fn main() -> Result<()> {
     if !args.criterion_dir.is_dir() {
         return Err(color_eyre::eyre::eyre!("criterion_dir is not a directory"));
     }
+    let log = std::fs::read_to_string(&args.logfile)?;
 
     let mut benchmarks = AoCBenchmarks::default();
     let mut users: BTreeSet<String> = BTreeSet::new();
@@ -90,24 +95,26 @@ fn main() -> Result<()> {
             .median_for_user
             .insert(username.to_string(), median);
     }
+    let users: Vec<String> = users.into_iter().collect();
     // for each day, add a total phase
     for day_benchmarks in benchmarks.days.values_mut() {
         let mut total_phase = AoCBenchmarkPhase::default();
+        for user in &users {
+            total_phase.median_for_user.insert(user.to_owned(), 0.0);
+        }
         for phase_benchmarks in day_benchmarks.phases.values() {
-            for (user, median) in &phase_benchmarks.median_for_user {
-                *total_phase
-                    .median_for_user
-                    .entry(user.to_owned())
-                    .or_default() += median;
+            for user in &users {
+                if !phase_benchmarks.median_for_user.contains_key(user) {
+                    total_phase.median_for_user.remove(user);
+                } else if let Some(m) = total_phase.median_for_user.get_mut(user) {
+                    *m += phase_benchmarks.median_for_user[user];
+                }
             }
         }
         day_benchmarks
             .phases
             .insert("Total".to_string(), total_phase);
     }
-
-    // Day, Phase, User, User, User, ...
-    let users: Vec<String> = users.into_iter().collect();
 
     let mut table_builder = Builder::default();
     // header
@@ -135,12 +142,27 @@ fn main() -> Result<()> {
                     let (median, unit) = helper::scale_nanoseconds_value(median);
                     row.push(format!("{}{:.3}{}{}", maybe_bold, median, unit, maybe_bold));
                 } else {
-                    row.push("-".to_string());
+                    // check what happened here
+                    if log.contains(&format!("{user}-day{day:02}-{phase}: not implemented")) {
+                        row.push("-".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: error")) {
+                        row.push("😔".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: timeout")) {
+                        row.push("🐌".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: panicked")) {
+                        row.push("💥".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: wrong result")) {
+                        row.push("❌".to_string());
+                    } else {
+                        row.push("⁉️".to_string());
+                    }
                 }
             }
             table_builder.push_record(row);
         }
     }
+    println!("# AoC2023 Benchmark Results");
+    println!("");
     println!(
         "{}",
         table_builder
@@ -149,6 +171,12 @@ fn main() -> Result<()> {
             .with(Modify::new(Rows::new(1..)).with(Alignment::right()))
             .to_string(),
     );
+    println!();
+    println!("🐌 - Program timeout (parse: 1sec, part1: 10sec, part2: 30sec)");
+    println!("💥 - Program panicked");
+    println!("❌ - Program produced invalid result");
+    println!("- - Not implemented");
+    println!("⁉️ - Unknown error occured");
 
     Ok(())
 }
