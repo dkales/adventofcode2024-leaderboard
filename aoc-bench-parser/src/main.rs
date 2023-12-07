@@ -175,7 +175,7 @@ fn main() -> Result<()> {
     println!("🐌 - Program timeout (parse: 1sec, part1: 10sec, part2: 30sec)");
     println!("💥 - Program panicked");
     println!("❌ - Program produced invalid result");
-    println!("- - Not implemented");
+    println!("'-' - Not implemented");
     println!("⁉️ - Unknown error occured");
 
     Ok(())
