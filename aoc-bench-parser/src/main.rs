@@ -151,7 +151,7 @@ fn main() -> Result<()> {
                         row.push("🐌".to_string());
                     } else if log.contains(&format!("{user}-day{day:02}-{phase}: panicked")) {
                         row.push("💥".to_string());
-                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: wrong result")) {
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: wrong answer")) {
                         row.push("❌".to_string());
                     } else {
                         row.push("⁉️".to_string());
