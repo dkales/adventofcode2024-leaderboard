@@ -58,6 +58,13 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             Err(ExecutionError::Timeout),
             Err(ExecutionError::Timeout),
         );
+    } else if let Err(ExecutionError::Panic) = parse_result {
+        // if the parser panicked, we can't run the other benchmarks
+        return (
+            Err(ExecutionError::Panic),
+            Err(ExecutionError::Panic),
+            Err(ExecutionError::Panic),
+        );
     }
     let _ = t.join();
 
