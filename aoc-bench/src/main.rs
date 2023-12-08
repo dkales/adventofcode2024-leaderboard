@@ -44,7 +44,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             let _parsed_input = S::parse_input(input);
             ()
         });
-        sender.send(res).expect("channel is alive");
+        let _ = sender.send(res);
     });
     let parse_result = match receiver.recv_timeout(Duration::from_secs(1)) {
         Ok(Ok(())) => Ok(()),
@@ -94,7 +94,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             }
             Ok(())
         });
-        sender.send(res).expect("channel is alive");
+        let _ = sender.send(res);
     });
     let part1_result = match receiver.recv_timeout(Duration::from_secs(10)) {
         Ok(Ok(x)) => x,
@@ -146,7 +146,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             }
             Ok(())
         });
-        sender.send(res).expect("channel is alive");
+        let _ = sender.send(res);
     });
     let part2_result = match receiver.recv_timeout(Duration::from_secs(30)) {
         Ok(Ok(x)) => x,
