@@ -140,6 +140,8 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
         let res = panic::catch_unwind(|| {
             let input = input.trim();
             let parsed_input = S::parse_input(input);
+            // also re-do part1, since it might change the input
+            let _stage1 = S::solve_part1(black_box(&parsed_input));
             let stage2 = S::solve_part2(black_box(&parsed_input));
             if stage2.to_string() != expected_stage2 {
                 return Err(ExecutionError::WrongAnswer);
