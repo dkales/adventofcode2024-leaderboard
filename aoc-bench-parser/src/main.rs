@@ -96,25 +96,6 @@ fn main() -> Result<()> {
             .insert(username.to_string(), median);
     }
     let users: Vec<String> = users.into_iter().collect();
-    // for each day, add a total phase
-    for day_benchmarks in benchmarks.days.values_mut() {
-        let mut total_phase = AoCBenchmarkPhase::default();
-        for user in &users {
-            total_phase.median_for_user.insert(user.to_owned(), 0.0);
-        }
-        for phase_benchmarks in day_benchmarks.phases.values() {
-            for user in &users {
-                if !phase_benchmarks.median_for_user.contains_key(user) {
-                    total_phase.median_for_user.remove(user);
-                } else if let Some(m) = total_phase.median_for_user.get_mut(user) {
-                    *m += phase_benchmarks.median_for_user[user];
-                }
-            }
-        }
-        day_benchmarks
-            .phases
-            .insert("Total".to_string(), total_phase);
-    }
 
     let mut table_builder = Builder::default();
     // header

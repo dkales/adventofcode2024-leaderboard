@@ -6,7 +6,7 @@ use std::{
 };
 
 use aoc_traits::{AdventOfCodeDay, AdventOfCodeSolutions};
-use criterion::{black_box, Criterion};
+use criterion::{black_box, BatchSize, Criterion};
 
 enum ExecutionError {
     Timeout,
@@ -127,10 +127,16 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
         };
 
         c.bench_function(&format!("{username}-day{day:02}-part1"), |b| {
-            let parsed_input = S::parse_input(trimmed_input);
-            b.iter(|| {
-                black_box(S::solve_part1(black_box(&parsed_input)));
-            })
+            b.iter_batched_ref(
+                || {
+                    let parsed_input = S::parse_input(black_box(trimmed_input));
+                    parsed_input
+                },
+                |parsed_input| {
+                    black_box(S::solve_part1(parsed_input));
+                },
+                BatchSize::LargeInput,
+            )
         });
     }
     let start = Instant::now();
@@ -181,10 +187,25 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             c.sample_size(100)
         };
         c.bench_function(&format!("{username}-day{day:02}-part2"), |b| {
-            let parsed_input = S::parse_input(trimmed_input);
-            let _stage1 = S::solve_part1(black_box(&parsed_input));
+            b.iter_batched_ref(
+                || {
+                    let parsed_input = S::parse_input(black_box(trimmed_input));
+                    let _stage1 = S::solve_part1(&parsed_input);
+                    parsed_input
+                },
+                |parsed_input| {
+                    black_box(S::solve_part2(parsed_input));
+                },
+                criterion::BatchSize::LargeInput,
+            )
+        });
+        c.bench_function(&format!("{username}-day{day:02}-Total"), |b| {
             b.iter(|| {
-                black_box(S::solve_part2(black_box(&parsed_input)));
+                let parsed_input = S::parse_input(black_box(trimmed_input));
+                black_box((
+                    S::solve_part1(black_box(&parsed_input)),
+                    S::solve_part2(black_box(&parsed_input)),
+                ));
             })
         });
     }
