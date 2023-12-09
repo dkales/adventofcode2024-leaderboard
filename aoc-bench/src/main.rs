@@ -79,7 +79,6 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             black_box(S::parse_input(black_box(trimmed_input)));
         })
     });
-    let parsed_input = S::parse_input(trimmed_input);
 
     let start = Instant::now();
     // check if part1 is implemented and takes less than 10 second
@@ -128,6 +127,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
         };
 
         c.bench_function(&format!("{username}-day{day:02}-part1"), |b| {
+            let parsed_input = S::parse_input(trimmed_input);
             b.iter(|| {
                 black_box(S::solve_part1(black_box(&parsed_input)));
             })
@@ -181,6 +181,8 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             c.sample_size(100)
         };
         c.bench_function(&format!("{username}-day{day:02}-part2"), |b| {
+            let parsed_input = S::parse_input(trimmed_input);
+            let _stage1 = S::solve_part1(black_box(&parsed_input));
             b.iter(|| {
                 black_box(S::solve_part2(black_box(&parsed_input)));
             })
