@@ -376,8 +376,8 @@ const INPUTS_OUTPUTS: [(u8, &'static str, &'static str, &'static str); 25] = [
     (
         13,
         include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day13.txt")),
-        "",
-        "",
+        "27505",
+        "22906",
     ),
     (
         14,
