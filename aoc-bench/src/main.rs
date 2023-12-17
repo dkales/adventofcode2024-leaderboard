@@ -201,11 +201,8 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
         });
         c.bench_function(&format!("{username}-day{day:02}-Total"), |b| {
             b.iter(|| {
-                let parsed_input = S::parse_input(black_box(trimmed_input));
-                black_box((
-                    S::solve_part1(black_box(&parsed_input)),
-                    S::solve_part2(black_box(&parsed_input)),
-                ));
+                let parsed_input = S::parse_input(trimmed_input);
+                (S::solve_part1(&parsed_input), S::solve_part2(&parsed_input));
             })
         });
     }
