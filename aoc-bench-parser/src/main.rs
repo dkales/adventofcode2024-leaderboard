@@ -142,7 +142,7 @@ fn main() -> Result<()> {
             table_builder.push_record(row);
         }
     }
-    println!("# AoC2023 Benchmark Results");
+    println!("# AoC2024 Benchmark Results");
     println!("");
     println!(
         "{}",
