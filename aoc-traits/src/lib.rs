@@ -1,12 +1,12 @@
 use std::fmt::Display;
 
 /// A somewhat unified interface for the Advent of Code problems.
-/// The lifetime `'a` is used to make sure that the input can be borrowed from.
-/// This allows you, e.g., to make `Self::Part1Input` a `&'a str`, to borrow from the input.
-pub trait AdventOfCodeDay<'a> {
+pub trait AdventOfCodeDay {
     /// The result of parsing your input, can be whatever you want to store the parsed input as.
     /// If you need to parse the input differently for part 1 and part 2, you can use a tuple here.
-    type ParsedInput;
+    /// The lifetime `'a` is used to make sure that the input can be borrowed from.
+    /// This allows you, e.g., to make `Self::Part1Input` a `&'a str`, to borrow from the input.
+    type ParsedInput<'a>;
 
     /// The type of the output for part 1, usually a number.
     /// Sadly AoC solutions are not always numbers. Usually use [`u64`] as the default for numbers, and [`String`] for text answers.
@@ -16,38 +16,36 @@ pub trait AdventOfCodeDay<'a> {
     type Part2Output: Display;
 
     /// Solve part 1 of the problem.
-    /// You will get the input as a `&str`.
-    fn solve_part1(input: &Self::ParsedInput) -> Self::Part1Output;
+    fn solve_part1(input: &Self::ParsedInput<'_>) -> Self::Part1Output;
     /// Solve part 2 of the problem.
-    /// You will get the input as a `&str`.
-    fn solve_part2(input: &Self::ParsedInput) -> Self::Part2Output;
+    fn solve_part2(input: &Self::ParsedInput<'_>) -> Self::Part2Output;
     /// Parse the input into a format that can be used by the solver.
     /// If you make `Self::ParsedInput` a type that has a lifetime of `'a`, then you cam borrow from the input.
-    fn parse_input(input: &'a str) -> Self::ParsedInput;
+    fn parse_input<'a>(input: &'a str) -> Self::ParsedInput<'a>;
 }
 
 // a default impl that panics on all methods
-impl AdventOfCodeDay<'_> for () {
-    type ParsedInput = ();
+impl AdventOfCodeDay for () {
+    type ParsedInput<'a> = ();
 
     type Part1Output = &'static str;
 
     type Part2Output = &'static str;
 
-    fn solve_part1(_input: &Self::ParsedInput) -> Self::Part1Output {
+    fn solve_part1(_input: &Self::ParsedInput<'_>) -> Self::Part1Output {
         unimplemented!()
     }
 
-    fn solve_part2(_input: &Self::ParsedInput) -> Self::Part2Output {
+    fn solve_part2(_input: &Self::ParsedInput<'_>) -> Self::Part2Output {
         unimplemented!()
     }
 
-    fn parse_input(_input: &'_ str) -> Self::ParsedInput {
+    fn parse_input(_input: &'_ str) -> Self::ParsedInput<'_> {
         unimplemented!()
     }
 }
 
-pub fn run_day<'a, Day: AdventOfCodeDay<'a>>(input: &'a str) {
+pub fn run_day<Day: AdventOfCodeDay>(input: &str) {
     let input = input.trim();
     let parsed_input = Day::parse_input(input);
     let stage1_solution = Day::solve_part1(&parsed_input);
@@ -57,31 +55,31 @@ pub fn run_day<'a, Day: AdventOfCodeDay<'a>>(input: &'a str) {
 }
 
 pub trait AdventOfCodeSolutions {
-    type Day01: for<'a> AdventOfCodeDay<'a>;
-    type Day02: for<'a> AdventOfCodeDay<'a>;
-    type Day03: for<'a> AdventOfCodeDay<'a>;
-    type Day04: for<'a> AdventOfCodeDay<'a>;
-    type Day05: for<'a> AdventOfCodeDay<'a>;
-    type Day06: for<'a> AdventOfCodeDay<'a>;
-    type Day07: for<'a> AdventOfCodeDay<'a>;
-    type Day08: for<'a> AdventOfCodeDay<'a>;
-    type Day09: for<'a> AdventOfCodeDay<'a>;
-    type Day10: for<'a> AdventOfCodeDay<'a>;
-    type Day11: for<'a> AdventOfCodeDay<'a>;
-    type Day12: for<'a> AdventOfCodeDay<'a>;
-    type Day13: for<'a> AdventOfCodeDay<'a>;
-    type Day14: for<'a> AdventOfCodeDay<'a>;
-    type Day15: for<'a> AdventOfCodeDay<'a>;
-    type Day16: for<'a> AdventOfCodeDay<'a>;
-    type Day17: for<'a> AdventOfCodeDay<'a>;
-    type Day18: for<'a> AdventOfCodeDay<'a>;
-    type Day19: for<'a> AdventOfCodeDay<'a>;
-    type Day20: for<'a> AdventOfCodeDay<'a>;
-    type Day21: for<'a> AdventOfCodeDay<'a>;
-    type Day22: for<'a> AdventOfCodeDay<'a>;
-    type Day23: for<'a> AdventOfCodeDay<'a>;
-    type Day24: for<'a> AdventOfCodeDay<'a>;
-    type Day25: for<'a> AdventOfCodeDay<'a>;
+    type Day01: AdventOfCodeDay;
+    type Day02: AdventOfCodeDay;
+    type Day03: AdventOfCodeDay;
+    type Day04: AdventOfCodeDay;
+    type Day05: AdventOfCodeDay;
+    type Day06: AdventOfCodeDay;
+    type Day07: AdventOfCodeDay;
+    type Day08: AdventOfCodeDay;
+    type Day09: AdventOfCodeDay;
+    type Day10: AdventOfCodeDay;
+    type Day11: AdventOfCodeDay;
+    type Day12: AdventOfCodeDay;
+    type Day13: AdventOfCodeDay;
+    type Day14: AdventOfCodeDay;
+    type Day15: AdventOfCodeDay;
+    type Day16: AdventOfCodeDay;
+    type Day17: AdventOfCodeDay;
+    type Day18: AdventOfCodeDay;
+    type Day19: AdventOfCodeDay;
+    type Day20: AdventOfCodeDay;
+    type Day21: AdventOfCodeDay;
+    type Day22: AdventOfCodeDay;
+    type Day23: AdventOfCodeDay;
+    type Day24: AdventOfCodeDay;
+    type Day25: AdventOfCodeDay;
 
     fn solve_day(day: usize, input: &str) -> Result<(), String> {
         let input = input.trim();
