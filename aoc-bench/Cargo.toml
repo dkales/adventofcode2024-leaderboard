@@ -6,9 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-aoc-traits = { git = "https://github.com/dkales/adventofcode2023-leaderboard", rev = "ac544663758c2dca2ee892fd7ab59419999350dc" }
+age = "0.11.0"
+aoc-traits = { git = "https://github.com/dkales/adventofcode2024-leaderboard", rev = "c03be9a25e0b695061a74f4f0e62f59f59e4f507" }
 criterion = "0.5"
-dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2023", branch = "main" }
-fnieddu-aoc = { package = "meta", git = "https://github.com/fnieddu/AoC2023", branch = "main" }
-fabian-aoc = { package = "meta", git = "https://github.com/Fabian1409/adventofcode", branch = "master" }
-simon-aoc = { package = "meta", git = "https://code.guggi.xyz/simon/advent_of_code_23", branch = "main" }
+dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2024", branch = "main" }
+# fnieddu-aoc = { package = "meta", git = "https://github.com/fnieddu/AoC2023", branch = "main" }
+# fabian-aoc = { package = "meta", git = "https://github.com/Fabian1409/adventofcode", branch = "master" }
+# simon-aoc = { package = "meta", git = "https://code.guggi.xyz/simon/advent_of_code_23", branch = "main" }

@@ -15,10 +15,10 @@ enum ExecutionError {
     Panic,
 }
 
-fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
+fn bench_aoc_day<S: AdventOfCodeDay + 'static>(
     username: &str,
     day: u8,
-    input: &'static str,
+    input: &'static [u8],
     expected_stage1: &'static str,
     expected_stage2: &'static str,
 ) -> (
@@ -26,6 +26,12 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
     Result<(), ExecutionError>,
     Result<(), ExecutionError>,
 ) {
+    let key = std::env::var("AGE_PASSPHRASE")
+        .expect("need AGE_PASSPHRASE to be set")
+        .into();
+    let identity = age::scrypt::Identity::new(key);
+    let input_dec = String::from_utf8(age::decrypt(&identity, &input).expect("can decrypt input"))
+        .expect("input is utf8");
     println!("Benchmarking user {}, day{:02}", username, day);
     if core::any::TypeId::of::<S>() == core::any::TypeId::of::<()>() {
         return (
@@ -38,8 +44,9 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
 
     // check if the parser is implemented and takes less than 1 second
     let (sender, receiver) = mpsc::channel();
+    let input = input_dec.clone();
     let t = thread::spawn(move || {
-        let res = panic::catch_unwind(|| {
+        let res = panic::catch_unwind(move || {
             let input = input.trim();
             let _parsed_input = S::parse_input(input);
             ()
@@ -68,14 +75,15 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
     }
     let _ = t.join();
 
-    let trimmed_input = input.trim();
     let mut c = Criterion::default()
         .sample_size(100)
         .warm_up_time(Duration::from_secs(1))
         .measurement_time(Duration::from_secs(1))
         .without_plots();
+    let input = input_dec.clone();
     c.bench_function(&format!("{username}-day{day:02}-parse"), |b| {
-        b.iter(|| {
+        let trimmed_input = input.trim();
+        b.iter(move || {
             black_box(S::parse_input(black_box(trimmed_input)));
         })
     });
@@ -83,6 +91,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
     let start = Instant::now();
     // check if part1 is implemented and takes less than 10 second
     let (sender, receiver) = mpsc::channel();
+    let input = input_dec.clone();
     let t = thread::spawn(move || {
         let res = panic::catch_unwind(|| {
             let input = input.trim();
@@ -126,7 +135,9 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             c.sample_size(100)
         };
 
+        let input = input_dec.clone();
         c.bench_function(&format!("{username}-day{day:02}-part1"), |b| {
+            let trimmed_input = input.trim();
             b.iter_batched_ref(
                 || {
                     let parsed_input = S::parse_input(black_box(trimmed_input));
@@ -142,6 +153,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
     let start = Instant::now();
     // check if part2 is implemented and takes less than 30 second
     let (sender, receiver) = mpsc::channel();
+    let input = input_dec.clone();
     let t = thread::spawn(move || {
         let res = panic::catch_unwind(|| {
             let input = input.trim();
@@ -186,7 +198,9 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
         } else {
             c.sample_size(100)
         };
+        let input = input_dec.clone();
         c.bench_function(&format!("{username}-day{day:02}-part2"), |b| {
+            let trimmed_input = input.trim();
             b.iter_batched_ref(
                 || {
                     let parsed_input = S::parse_input(black_box(trimmed_input));
@@ -200,6 +214,7 @@ fn bench_aoc_day<S: AdventOfCodeDay<'static> + 'static>(
             )
         });
         c.bench_function(&format!("{username}-day{day:02}-Total"), |b| {
+            let trimmed_input = input.trim();
             b.iter(|| {
                 let parsed_input = S::parse_input(trimmed_input);
                 (S::solve_part1(&parsed_input), S::solve_part2(&parsed_input));
@@ -286,10 +301,10 @@ fn bench_aoc<S: AdventOfCodeSolutions + 'static>(username: &str) {
 }
 
 fn benches() {
-    bench_aoc::<dkales_aoc::AoC2023>("dkales");
-    bench_aoc::<fnieddu_aoc::AoC2023>("fnieddu");
-    bench_aoc::<fabian_aoc::AoC2023>("fabian1409");
-    bench_aoc::<simon_aoc::AoC2023>("devise");
+    bench_aoc::<dkales_aoc::AoC2024>("dkales");
+    // bench_aoc::<fnieddu_aoc::AoC2023>("fnieddu");
+    // bench_aoc::<fabian_aoc::AoC2023>("fabian1409");
+    // bench_aoc::<simon_aoc::AoC2023>("devise");
 }
 
 fn main() {
@@ -297,155 +312,155 @@ fn main() {
     Criterion::default().final_summary();
 }
 
-const INPUTS_OUTPUTS: [(u8, &'static str, &'static str, &'static str); 25] = [
+const INPUTS_OUTPUTS: [(u8, &'static [u8], &'static str, &'static str); 2] = [
     (
         1,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day01.txt")),
-        "56397",
-        "55701",
+        include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day01.txt.age")),
+        "1319616",
+        "27267728",
     ),
     (
         2,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day02.txt")),
-        "2913",
-        "55593",
+        include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day02.txt.age")),
+        "680",
+        "710",
     ),
-    (
-        3,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day03.txt")),
-        "554003",
-        "87263515",
-    ),
-    (
-        4,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day04.txt")),
-        "21485",
-        "11024379",
-    ),
-    (
-        5,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day05.txt")),
-        "174137457",
-        "1493866",
-    ),
-    (
-        6,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day06.txt")),
-        "1710720",
-        "35349468",
-    ),
-    (
-        7,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day07.txt")),
-        "248422077",
-        "249817836",
-    ),
-    (
-        8,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day08.txt")),
-        "15871",
-        "11283670395017",
-    ),
-    (
-        9,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day09.txt")),
-        "1916822650",
-        "966",
-    ),
-    (
-        10,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day10.txt")),
-        "6838",
-        "451",
-    ),
-    (
-        11,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day11.txt")),
-        "9724940",
-        "569052586852",
-    ),
-    (
-        12,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day12.txt")),
-        "7716",
-        "18716325559999",
-    ),
-    (
-        13,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day13.txt")),
-        "27505",
-        "22906",
-    ),
-    (
-        14,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day14.txt")),
-        "108857",
-        "95273",
-    ),
-    (
-        15,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day15.txt")),
-        "517315",
-        "247763",
-    ),
-    (
-        16,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day16.txt")),
-        "7979",
-        "8437",
-    ),
-    (
-        17,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day17.txt")),
-        "942",
-        "1082",
-    ),
-    (
-        18,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day18.txt")),
-        "48652",
-        "45757884535661",
-    ),
-    (
-        19,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day19.txt")),
-        "432427",
-        "143760172569135",
-    ),
-    (
-        20,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day20.txt")),
-        "788081152",
-        "",
-    ),
-    (
-        21,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day21.txt")),
-        "3591",
-        "598044246091826",
-    ),
-    (
-        22,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day22.txt")),
-        "477",
-        "61555",
-    ),
-    (
-        23,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day23.txt")),
-        "2086",
-        "6526",
-    ),
-    (
-        24,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day24.txt")),
-        "17776",
-        "948978092202212",
-    ),
-    (
-        25,
-        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day25.txt")),
-        "555702",
-        "",
-    ),
+    // (
+    //     3,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day03.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     4,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day04.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     5,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day05.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     6,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day06.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     7,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day07.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     8,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day08.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     9,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day09.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     10,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day10.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     11,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day11.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     12,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day12.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     13,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day13.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     14,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day14.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     15,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day15.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     16,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day16.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     17,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day17.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     18,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day18.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     19,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day19.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     20,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day20.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     21,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day21.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     22,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day22.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     23,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day23.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     24,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day24.txt.age")),
+    //     "",
+    //     "",
+    // ),
+    // (
+    //     25,
+    //     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day25.txt.age")),
+    //     "",
+    //     "",
+    // ),
 ];
