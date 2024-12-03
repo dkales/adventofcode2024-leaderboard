@@ -11,5 +11,5 @@ aoc-traits = { git = "https://github.com/dkales/adventofcode2024-leaderboard", r
 criterion = "0.5"
 dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2024", branch = "main" }
 # fnieddu-aoc = { package = "meta", git = "https://github.com/fnieddu/AoC2023", branch = "main" }
-# fabian-aoc = { package = "meta", git = "https://github.com/Fabian1409/adventofcode", branch = "master" }
-# simon-aoc = { package = "meta", git = "https://code.guggi.xyz/simon/advent_of_code_23", branch = "main" }
+fabian-aoc = { package = "meta", git = "https://github.com/fabian1409/aoc2024", branch = "master" }
+simon-aoc = { package = "meta", git = "https://github.com/Gugi264/AoC2024", branch = "main" }
