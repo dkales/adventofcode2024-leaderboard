@@ -26,7 +26,7 @@ jobs:
         with:
           toolchain: nightly
       - name: Update Deps to pull new versions of solutions
-        run: cargo update --workspace
+        run: rm -rf Cargo.lock && rm -rf ~/.cargo/git && cargo update --workspace
       - name: Build AoC Benchmarks
         run: cargo build --release --workspace --all-features
       - name: Run AoC Benchmarks
