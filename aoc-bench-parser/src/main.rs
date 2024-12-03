@@ -107,8 +107,11 @@ fn main() -> Result<()> {
         .concat(),
     );
 
-    for (day, day_benchmarks) in benchmarks.days {
+    for (day, day_benchmarks) in &benchmarks.days {
         for (phase, phase_benchmarks) in &day_benchmarks.phases {
+            if phase != "Total" {
+                continue;
+            }
             let mut row = vec![day.to_string(), phase.to_owned()];
             let min_median = phase_benchmarks
                 .median_for_user
@@ -152,6 +155,63 @@ fn main() -> Result<()> {
             .with(Modify::new(Rows::new(1..)).with(Alignment::right()))
             .to_string(),
     );
+    println!();
+
+    let mut table_builder = Builder::default();
+    // header
+    table_builder.set_header(
+        [
+            vec!["Day", "Phase"],
+            users.iter().map(|s| s.as_str()).collect(),
+        ]
+        .concat(),
+    );
+    for (day, day_benchmarks) in &benchmarks.days {
+        for (phase, phase_benchmarks) in &day_benchmarks.phases {
+            let mut row = vec![day.to_string(), phase.to_owned()];
+            let min_median = phase_benchmarks
+                .median_for_user
+                .values()
+                .copied()
+                .min_by(|a, b| a.partial_cmp(b).unwrap())
+                .unwrap_or_default();
+            for user in &users {
+                let median = phase_benchmarks.median_for_user.get(user).copied();
+                if let Some(median) = median {
+                    let maybe_bold = if median < min_median * 1.05 { "**" } else { "" };
+                    let (median, unit) = helper::scale_nanoseconds_value(median);
+                    row.push(format!("{}{:.3}{}{}", maybe_bold, median, unit, maybe_bold));
+                } else {
+                    // check what happened here
+                    if log.contains(&format!("{user}-day{day:02}-{phase}: not implemented")) {
+                        row.push("-".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: error")) {
+                        row.push("😔".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: timeout")) {
+                        row.push("🐌".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: panicked")) {
+                        row.push("💥".to_string());
+                    } else if log.contains(&format!("{user}-day{day:02}-{phase}: wrong answer")) {
+                        row.push("❌".to_string());
+                    } else {
+                        row.push("⁉️".to_string());
+                    }
+                }
+            }
+            table_builder.push_record(row);
+        }
+    }
+    println!("<details>");
+    println!("<summary> Click to expand for detailed breakdown </summary>");
+    println!(
+        "{}",
+        table_builder
+            .build()
+            .with(Style::markdown())
+            .with(Modify::new(Rows::new(1..)).with(Alignment::right()))
+            .to_string(),
+    );
+    println!("</details>");
     println!();
     println!("🐌 - Program timeout (parse: 1sec, part1: 10sec, part2: 30sec)");
     println!("💥 - Program panicked");
