@@ -203,6 +203,7 @@ fn main() -> Result<()> {
     }
     println!("<details>");
     println!("<summary> Click to expand for detailed breakdown </summary>");
+    println!();
     println!(
         "{}",
         table_builder
@@ -211,6 +212,7 @@ fn main() -> Result<()> {
             .with(Modify::new(Rows::new(1..)).with(Alignment::right()))
             .to_string(),
     );
+    println!();
     println!("</details>");
     println!();
     println!("🐌 - Program timeout (parse: 1sec, part1: 10sec, part2: 30sec)");
