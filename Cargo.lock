@@ -141,6 +141,7 @@ dependencies = [
  "age",
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
  "criterion",
+ "meta 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
  "meta 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
  "meta 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
  "meta 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
@@ -540,6 +541,14 @@ dependencies = [
 [[package]]
 name = "day01"
 version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day01"
+version = "0.1.0"
 source = "git+https://github.com/dkales/adventofcode2024?branch=main#a53287d15a49ed7bebc7140ad996402b21097c69"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
@@ -565,6 +574,14 @@ dependencies = [
 [[package]]
 name = "day02"
 version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day02"
+version = "0.1.0"
 source = "git+https://github.com/dkales/adventofcode2024?branch=main#a53287d15a49ed7bebc7140ad996402b21097c69"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
@@ -586,6 +603,15 @@ source = "git+https://github.com/fabian1409/aoc2024?branch=master#7e27eb59fc4ca0
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
  "itertools 0.13.0",
+]
+
+[[package]]
+name = "day03"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "regex",
 ]
 
 [[package]]
@@ -1066,6 +1092,21 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "meta"
 version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+dependencies = [
+ "age",
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "clap",
+ "color-eyre",
+ "day01 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day02 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day03 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "secrecy",
+]
+
+[[package]]
+name = "meta"
+version = "0.1.0"
 source = "git+https://github.com/dkales/adventofcode2024?branch=main#a53287d15a49ed7bebc7140ad996402b21097c69"
 dependencies = [
  "age",
@@ -1074,7 +1115,7 @@ dependencies = [
  "color-eyre",
  "day01 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
  "day02 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
- "day03",
+ "day03 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
  "secrecy",
 ]
 

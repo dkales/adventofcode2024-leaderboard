@@ -302,7 +302,7 @@ fn bench_aoc<S: AdventOfCodeSolutions + 'static>(username: &str) {
 
 fn benches() {
     bench_aoc::<dkales_aoc::AoC2024>("dkales");
-    // bench_aoc::<fnieddu_aoc::AoC2023>("fnieddu");
+    bench_aoc::<franco_aoc::AoC2024>("franco");
     bench_aoc::<fabian_aoc::AoC2024>("fabian1409");
     bench_aoc::<simon_aoc::AoC2024>("devise");
 }
