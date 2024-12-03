@@ -1,0 +1,1 @@
+[![AoC Benchmarks](https://github.com/dkales/adventofcode2024-leaderboard/actions/workflows/bench.yaml/badge.svg?event=schedule)](https://github.com/dkales/adventofcode2024-leaderboard/actions/workflows/bench.yaml)
