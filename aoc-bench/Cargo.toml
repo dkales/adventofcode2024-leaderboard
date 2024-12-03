@@ -10,6 +10,6 @@ age = "0.11.0"
 aoc-traits = { git = "https://github.com/dkales/adventofcode2024-leaderboard", rev = "c03be9a25e0b695061a74f4f0e62f59f59e4f507" }
 criterion = "0.5"
 dkales-aoc = { package = "meta", git = "https://github.com/dkales/adventofcode2024", branch = "main" }
-# fnieddu-aoc = { package = "meta", git = "https://github.com/fnieddu/AoC2023", branch = "main" }
+franco-aoc = { package = "meta", git = "https://github.com/0xThemis/aoc2024", branch = "main" }
 fabian-aoc = { package = "meta", git = "https://github.com/fabian1409/aoc2024", branch = "master" }
 simon-aoc = { package = "meta", git = "https://github.com/Gugi264/AoC2024", branch = "main" }
