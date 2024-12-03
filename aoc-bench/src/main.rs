@@ -303,8 +303,8 @@ fn bench_aoc<S: AdventOfCodeSolutions + 'static>(username: &str) {
 fn benches() {
     bench_aoc::<dkales_aoc::AoC2024>("dkales");
     // bench_aoc::<fnieddu_aoc::AoC2023>("fnieddu");
-    // bench_aoc::<fabian_aoc::AoC2023>("fabian1409");
-    // bench_aoc::<simon_aoc::AoC2023>("devise");
+    bench_aoc::<fabian_aoc::AoC2023>("fabian1409");
+    bench_aoc::<simon_aoc::AoC2023>("devise");
 }
 
 fn main() {
