@@ -120,11 +120,39 @@ fn main() -> Result<()> {
                 .min_by(|a, b| a.partial_cmp(b).unwrap())
                 .unwrap_or_default();
             for user in &users {
+                let mut valid = true;
+                // quick hack, see if any phases are invalid
+                for (phase, phase_benchmarks) in &day_benchmarks.phases {
+                    let median = phase_benchmarks.median_for_user.get(user).copied();
+                    if let Some(_) = median {
+                        continue;
+                    } else {
+                        // check what happened here
+                        if log.contains(&format!("{user}-day{day:02}-{phase}: not implemented")) {
+                            continue;
+                        } else if log.contains(&format!("{user}-day{day:02}-{phase}: error")) {
+                            valid = false;
+                        } else if log.contains(&format!("{user}-day{day:02}-{phase}: timeout")) {
+                            valid = false;
+                        } else if log.contains(&format!("{user}-day{day:02}-{phase}: panicked")) {
+                            valid = false;
+                        } else if log.contains(&format!("{user}-day{day:02}-{phase}: wrong answer"))
+                        {
+                            valid = false;
+                        } else {
+                            valid = false;
+                        }
+                    }
+                }
                 let median = phase_benchmarks.median_for_user.get(user).copied();
                 if let Some(median) = median {
                     let maybe_bold = if median < min_median * 1.05 { "**" } else { "" };
                     let (median, unit) = helper::scale_nanoseconds_value(median);
-                    row.push(format!("{}{:.3}{}{}", maybe_bold, median, unit, maybe_bold));
+                    if valid {
+                        row.push(format!("{}{:.3}{}{}", maybe_bold, median, unit, maybe_bold));
+                    } else {
+                        row.push("😔".to_string());
+                    }
                 } else {
                     // check what happened here
                     if log.contains(&format!("{user}-day{day:02}-{phase}: not implemented")) {
