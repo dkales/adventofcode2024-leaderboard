@@ -255,9 +255,9 @@ checksum = "37b2a672a2cb129a2e41c10b1224bb368f9f37a2b16b612598138befd7b37eb5"
 
 [[package]]
 name = "cc"
-version = "1.2.2"
+version = "1.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f34d93e62b03caf570cccc334cbc6c2fceca82f39211051345108adcba3eebdc"
+checksum = "27f657647bcff5394bf56c7317665bbf790a137a50eaaa5c6bfbb9e27a518f2d"
 dependencies = [
  "shlex",
 ]
@@ -332,9 +332,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.5.21"
+version = "4.5.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb3b4b9e5a7c7514dfa52869339ee98b3156b0bfb4e8a77c4ff4babb64b1604f"
+checksum = "3135e7ec2ef7b10c6ed8950f0f792ed96ee093fa088608f1c76e569722700c84"
 dependencies = [
  "clap_builder",
  "clap_derive",
@@ -342,9 +342,9 @@ dependencies = [
 
 [[package]]
 name = "clap_builder"
-version = "4.5.21"
+version = "4.5.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b17a95aa67cc7b5ebd32aa5370189aa0d79069ef1c64ce893bd30fb24bff20ec"
+checksum = "30582fc632330df2bd26877bde0c1f4470d57c582bbc070376afcd04d8cb4838"
 dependencies = [
  "anstream",
  "anstyle",
@@ -366,9 +366,9 @@ dependencies = [
 
 [[package]]
 name = "clap_lex"
-version = "0.7.3"
+version = "0.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "afb84c814227b90d6895e01398aee0d8033c00e7466aca416fb6a8e0eb19d8a7"
+checksum = "f46ad14479a25103f283c0f10005961cf086d8dc42205bb44c46ac563475dca6"
 
 [[package]]
 name = "color-eyre"
@@ -541,7 +541,7 @@ dependencies = [
 [[package]]
 name = "day01"
 version = "0.1.0"
-source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
 ]
@@ -549,7 +549,7 @@ dependencies = [
 [[package]]
 name = "day01"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2024?branch=main#a53287d15a49ed7bebc7140ad996402b21097c69"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
  "itertools 0.13.0",
@@ -558,7 +558,7 @@ dependencies = [
 [[package]]
 name = "day01"
 version = "0.1.0"
-source = "git+https://github.com/Gugi264/AoC2024?branch=main#927c2234c1ba67d1f33d6017240a8254dcc86c26"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
 ]
@@ -566,7 +566,7 @@ dependencies = [
 [[package]]
 name = "day01"
 version = "0.1.0"
-source = "git+https://github.com/fabian1409/aoc2024?branch=master#7e27eb59fc4ca02bbff07cbf841f5bd154908afa"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
 ]
@@ -574,7 +574,7 @@ dependencies = [
 [[package]]
 name = "day02"
 version = "0.1.0"
-source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
 ]
@@ -582,7 +582,7 @@ dependencies = [
 [[package]]
 name = "day02"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2024?branch=main#a53287d15a49ed7bebc7140ad996402b21097c69"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
  "itertools 0.13.0",
@@ -591,7 +591,7 @@ dependencies = [
 [[package]]
 name = "day02"
 version = "0.1.0"
-source = "git+https://github.com/Gugi264/AoC2024?branch=main#927c2234c1ba67d1f33d6017240a8254dcc86c26"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
 ]
@@ -599,7 +599,7 @@ dependencies = [
 [[package]]
 name = "day02"
 version = "0.1.0"
-source = "git+https://github.com/fabian1409/aoc2024?branch=master#7e27eb59fc4ca02bbff07cbf841f5bd154908afa"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
  "itertools 0.13.0",
@@ -608,7 +608,7 @@ dependencies = [
 [[package]]
 name = "day03"
 version = "0.1.0"
-source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
  "regex",
@@ -617,11 +617,226 @@ dependencies = [
 [[package]]
 name = "day03"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2024?branch=main#a53287d15a49ed7bebc7140ad996402b21097c69"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
 dependencies = [
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
  "itertools 0.13.0",
  "regex",
+]
+
+[[package]]
+name = "day03"
+version = "0.1.0"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "regex",
+]
+
+[[package]]
+name = "day03"
+version = "0.1.0"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "regex",
+]
+
+[[package]]
+name = "day04"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day04"
+version = "0.1.0"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "eyre",
+ "itertools 0.13.0",
+]
+
+[[package]]
+name = "day04"
+version = "0.1.0"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "regex",
+]
+
+[[package]]
+name = "day04"
+version = "0.1.0"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day05"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "intmap",
+]
+
+[[package]]
+name = "day05"
+version = "0.1.0"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "eyre",
+ "itertools 0.13.0",
+]
+
+[[package]]
+name = "day05"
+version = "0.1.0"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day05"
+version = "0.1.0"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "intmap",
+ "itertools 0.13.0",
+]
+
+[[package]]
+name = "day06"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "intmap",
+]
+
+[[package]]
+name = "day06"
+version = "0.1.0"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "eyre",
+ "itertools 0.13.0",
+ "rustc-hash 2.1.0",
+]
+
+[[package]]
+name = "day06"
+version = "0.1.0"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day06"
+version = "0.1.0"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day07"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "intmap",
+]
+
+[[package]]
+name = "day07"
+version = "0.1.0"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "eyre",
+ "itertools 0.13.0",
+]
+
+[[package]]
+name = "day07"
+version = "0.1.0"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "itertools 0.13.0",
+]
+
+[[package]]
+name = "day07"
+version = "0.1.0"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day08"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "intmap",
+]
+
+[[package]]
+name = "day08"
+version = "0.1.0"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "eyre",
+ "itertools 0.13.0",
+ "rustc-hash 2.1.0",
+]
+
+[[package]]
+name = "day08"
+version = "0.1.0"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+ "itertools 0.13.0",
+]
+
+[[package]]
+name = "day09"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day09"
+version = "0.1.0"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
+]
+
+[[package]]
+name = "day10"
+version = "0.1.0"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
+dependencies = [
+ "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
 ]
 
 [[package]]
@@ -697,7 +912,7 @@ dependencies = [
  "fluent-syntax",
  "intl-memoizer",
  "intl_pluralrules",
- "rustc-hash",
+ "rustc-hash 1.1.0",
  "self_cell 0.10.3",
  "smallvec",
  "unic-langid",
@@ -999,6 +1214,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "intmap"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee87fd093563344074bacf24faa0bb0227fb6969fb223e922db798516de924d6"
+
+[[package]]
 name = "io_tee"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1047,9 +1268,9 @@ checksum = "d75a2a4b1b190afb6f5425f10f6a8f959d2ea0b9c2b1d79553551850539e4674"
 
 [[package]]
 name = "js-sys"
-version = "0.3.74"
+version = "0.3.76"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a865e038f7f6ed956f788f0d7d60c541fff74c7bd74272c5d4cf15c63743e705"
+checksum = "6717b6b5b077764fb5966237269cb3c64edddde4b14ce42647430a78ced9e7b7"
 dependencies = [
  "once_cell",
  "wasm-bindgen",
@@ -1063,9 +1284,9 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 
 [[package]]
 name = "libc"
-version = "0.2.167"
+version = "0.2.168"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "09d6582e104315a817dff97f75133544b2e094ee22447d2acf4a74e189ba06fc"
+checksum = "5aaeb2981e0606ca11d79718f8bb01164f1d6ed75080182d3abf017e6d244b6d"
 
 [[package]]
 name = "lock_api"
@@ -1092,7 +1313,7 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "meta"
 version = "0.1.0"
-source = "git+https://github.com/0xThemis/aoc2024?branch=main#45e05678502c29a13cd166637c842af907844b73"
+source = "git+https://github.com/0xThemis/aoc2024?branch=main#c90cae44496abc3e55f129b00c50e4c3e9e7db1f"
 dependencies = [
  "age",
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
@@ -1101,13 +1322,20 @@ dependencies = [
  "day01 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
  "day02 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
  "day03 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day04 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day05 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day06 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day07 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day08 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day09 0.1.0 (git+https://github.com/0xThemis/aoc2024?branch=main)",
+ "day10",
  "secrecy",
 ]
 
 [[package]]
 name = "meta"
 version = "0.1.0"
-source = "git+https://github.com/dkales/adventofcode2024?branch=main#a53287d15a49ed7bebc7140ad996402b21097c69"
+source = "git+https://github.com/dkales/adventofcode2024?branch=main#021e3da536da7231d9d3ff1dd4912aeb5b9faac2"
 dependencies = [
  "age",
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
@@ -1116,13 +1344,18 @@ dependencies = [
  "day01 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
  "day02 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
  "day03 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
+ "day04 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
+ "day05 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
+ "day06 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
+ "day07 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
+ "day08 0.1.0 (git+https://github.com/dkales/adventofcode2024?branch=main)",
  "secrecy",
 ]
 
 [[package]]
 name = "meta"
 version = "0.1.0"
-source = "git+https://github.com/Gugi264/AoC2024?branch=main#927c2234c1ba67d1f33d6017240a8254dcc86c26"
+source = "git+https://github.com/Gugi264/AoC2024?branch=main#3a32ccf27e2ab1833b149c56c61a439dc2a0f0f6"
 dependencies = [
  "age",
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
@@ -1130,13 +1363,18 @@ dependencies = [
  "color-eyre",
  "day01 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
  "day02 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
+ "day03 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
+ "day04 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
+ "day05 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
+ "day06 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
+ "day07 0.1.0 (git+https://github.com/Gugi264/AoC2024?branch=main)",
  "secrecy",
 ]
 
 [[package]]
 name = "meta"
 version = "0.1.0"
-source = "git+https://github.com/fabian1409/aoc2024?branch=master#7e27eb59fc4ca02bbff07cbf841f5bd154908afa"
+source = "git+https://github.com/fabian1409/aoc2024?branch=master#89d17e9d6c0fd5248fbce3292cdd62890d581c3a"
 dependencies = [
  "age",
  "aoc-traits 0.1.0 (git+https://github.com/dkales/adventofcode2024-leaderboard?rev=c03be9a25e0b695061a74f4f0e62f59f59e4f507)",
@@ -1144,6 +1382,13 @@ dependencies = [
  "color-eyre",
  "day01 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
  "day02 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
+ "day03 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
+ "day04 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
+ "day05 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
+ "day06 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
+ "day07 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
+ "day08 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
+ "day09 0.1.0 (git+https://github.com/fabian1409/aoc2024?branch=master)",
  "secrecy",
 ]
 
@@ -1537,6 +1782,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
 
 [[package]]
+name = "rustc-hash"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c7fb8039b3032c191086b10f11f319a6e99e1e82889c5cc6046f515c9db1d497"
+
+[[package]]
 name = "rustc_version"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1601,14 +1852,14 @@ version = "0.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e14e4d63b804dc0c7ec4a1e52bcb63f02c7ac94476755aa579edac21e01f915d"
 dependencies = [
- "self_cell 1.0.4",
+ "self_cell 1.1.0",
 ]
 
 [[package]]
 name = "self_cell"
-version = "1.0.4"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d369a96f978623eb3dc28807c4852d6cc617fed53da5d3c400feff1ef34a714a"
+checksum = "c2fdfc24bc566f839a2da4c4295b82db7d25a24253867d5c64355abb5799bdbe"
 
 [[package]]
 name = "semver"
@@ -1852,7 +2103,7 @@ version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "deb68604048ff8fa93347f02441e4487594adc20bb8a084f9e564d2b827a0a9f"
 dependencies = [
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -1938,9 +2189,9 @@ checksum = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
 
 [[package]]
 name = "wasm-bindgen"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d15e63b4482863c109d70a7b8706c1e364eb6ea449b201a76c5b89cedcec2d5c"
+checksum = "a474f6281d1d70c17ae7aa6a613c87fce69a127e2624002df63dcb39d6cf6396"
 dependencies = [
  "cfg-if",
  "once_cell",
@@ -1949,13 +2200,12 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-backend"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8d36ef12e3aaca16ddd3f67922bc63e48e953f126de60bd33ccc0101ef9998cd"
+checksum = "5f89bb38646b4f81674e8f5c3fb81b562be1fd936d84320f3264486418519c79"
 dependencies = [
  "bumpalo",
  "log",
- "once_cell",
  "proc-macro2",
  "quote",
  "syn 2.0.90",
@@ -1964,9 +2214,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "705440e08b42d3e4b36de7d66c944be628d579796b8090bfa3471478a2260051"
+checksum = "2cc6181fd9a7492eef6fef1f33961e3695e4579b9872a6f7c83aee556666d4fe"
 dependencies = [
  "quote",
  "wasm-bindgen-macro-support",
@@ -1974,9 +2224,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro-support"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "98c9ae5a76e46f4deecd0f0255cc223cfa18dc9b261213b8aa0c7b36f61b3f1d"
+checksum = "30d7a95b763d3c45903ed6c81f156801839e5ee968bb07e534c44df0fcd330c2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1987,15 +2237,15 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-shared"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6ee99da9c5ba11bd675621338ef6fa52296b76b83305e9b6e5c77d4c286d6d49"
+checksum = "943aab3fdaaa029a6e0271b35ea10b72b943135afe9bffca82384098ad0e06a6"
 
 [[package]]
 name = "web-sys"
-version = "0.3.74"
+version = "0.3.76"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a98bc3c33f0fe7e59ad7cd041b89034fa82a7c2d4365ca538dda6cdaf513863c"
+checksum = "04dd7223427d52553d3702c004d3b2fe07c148165faa56313cb00211e31c12bc"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
