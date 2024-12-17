@@ -312,7 +312,7 @@ fn main() {
     Criterion::default().final_summary();
 }
 
-const INPUTS_OUTPUTS: [(u8, &'static [u8], &'static str, &'static str); 15] = [
+const INPUTS_OUTPUTS: [(u8, &'static [u8], &'static str, &'static str); 16] = [
     (
         1,
         include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day01.txt.age")),
@@ -403,12 +403,12 @@ const INPUTS_OUTPUTS: [(u8, &'static [u8], &'static str, &'static str); 15] = [
         "1559280",
         "1576353",
     ),
-    // (
-    //     16,
-    //     include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day16.txt.age")),
-    //     "",
-    //     "",
-    // ),
+    (
+        16,
+        include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day16.txt.age")),
+        "82460",
+        "590",
+    ),
     // (
     //     17,
     //     include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day17.txt.age")),
