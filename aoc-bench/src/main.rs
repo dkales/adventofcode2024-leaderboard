@@ -312,7 +312,7 @@ fn main() {
     Criterion::default().final_summary();
 }
 
-const INPUTS_OUTPUTS: [(u8, &'static [u8], &'static str, &'static str); 22] = [
+const INPUTS_OUTPUTS: [(u8, &'static [u8], &'static str, &'static str); 25] = [
     (
         1,
         include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day01.txt.age")),
@@ -445,22 +445,22 @@ const INPUTS_OUTPUTS: [(u8, &'static [u8], &'static str, &'static str); 22] = [
         "17262627539",
         "1986",
     ),
-    // (
-    //     23,
-    //     include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day23.txt.age")),
-    //     "",
-    //     "",
-    // ),
-    // (
-    //     24,
-    //     include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day24.txt.age")),
-    //     "",
-    //     "",
-    // ),
-    // (
-    //     25,
-    //     include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day25.txt.age")),
-    //     "",
-    //     "",
-    // ),
+    (
+        23,
+        include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day23.txt.age")),
+        "1149",
+        "as,co,do,kh,km,mc,np,nt,un,uq,wc,wz,yo",
+    ),
+    (
+        24,
+        include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day24.txt.age")),
+        "61495910098126",
+        "css,cwt,gdd,jmv,pqt,z05,z09,z37",
+    ),
+    (
+        25,
+        include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/day25.txt.age")),
+        "3146",
+        "",
+    ),
 ];
